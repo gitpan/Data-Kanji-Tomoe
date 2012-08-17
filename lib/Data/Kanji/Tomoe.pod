@@ -1,0 +1,154 @@
+=encoding UTF-8
+
+=head1 NAME
+
+Data::Kanji::Tomoe - parse the data files of the Tomoe project
+
+=head1 SYNOPSIS
+
+    my $tomoe = Data::Kanji::Tomoe->new (
+        tomoe_data_file => '/path/to/data/file',
+        character_callback => \& user_callback,
+    );
+    $tomoe->parse ();
+
+=head1 DESCRIPTION
+
+This Perl module parses the kanji or hanzi data supplied by L<the Tomoe
+"handwriting recognition engine"|/Tomoe>.
+
+The data itself is not supplied with this module.
+
+The parsing is based on L<XML::Parser>, and simply breaks the Tomoe
+data into individual characters then calls back a routine supplied by
+the user with the data for each character.
+
+=head1 METHODS
+
+=head2 new
+
+    my $obj = Data::Kanji::Tomoe->new ();
+
+    my $obj = Data::Kanji::Tomoe->new (
+        tomoe_data_file => '/path/to/data/file',
+        character_callback => \& user_callback,
+    );
+
+Start the object. A hash containing the name of the data file to be
+parsed, under the key C<tomoe_data_file>, must be supplied.
+
+=cut
+
+=head2 parse
+
+    $tomoe->parse ();
+
+Parse the XML in the Tomoe data file.
+
+As each <character>...</character> is parsed from the file, the
+callback specified by C<character_callback> is called back in the form
+
+    &{$callback} ($obj, $character);
+
+where C<$character> is the character 
+
+C<$Character> is a hash reference with the following keys and values.
+
+=over
+
+=item utf8
+
+Value: the character itself.
+
+=item strokes
+
+Value: an array reference containing the strokes of the
+character. Each element of the array reference is a reference to an
+array of the points of the line. Each of these points is another
+reference. So, for example, if the original Tomoe data consists of
+
+    <strokes>
+        <stroke>
+            <point x="1" y="2"/>
+            <point x="3" y="4"/>
+        </stroke>
+        <stroke>
+            <point x="5" y="6"/>
+        </strokes>
+    </stroke>
+
+then C<< $character->{strokes} >> contains something like
+
+    [[[1, 2], [3, 4]], [[5, 6]]]
+
+=back
+
+Any data which the user wishes to send can be transmitted through the
+object itself:
+
+    my $obj = Data::Kanji::Tomoe->new (
+        tomoe_data_file => '/path/to/data/file',
+        character_callback => \& user_callback,
+        data_I_wish_to_send => \%data,
+    );
+
+    $obj->parse ();
+
+    sub user_callback
+    {
+        my ($obj, $c) = @_;
+        my $data = $obj->{data_I_wish_to_send};
+    }
+
+=head1 SEE ALSO
+
+=head2 Tomoe
+
+The Tomoe "handwriting recognition engine" is located at
+L<http://tomoe.sourceforge.jp>. The data files can be downloaded from
+this location. The most recent update of the software was on 17 May
+2006, and the project is dormant. Those who have queries about Tomoe
+might try L<the mailing list for the "Tegaki Handwriting Recognition
+Project"|https://groups.google.com/group/tegaki-hwr>. This is a similar
+project which some of the same people are involved in.
+
+=head2 Other sources of kanji shape data
+
+Those who are new to this field, who are considering what data to use,
+should note that the Tomoe data for the Japanese kanji contains many
+errors. A far better set of data for most purposes is the data of
+L<the KanjiVG project|http://kanjivg.tagaini.net/>. A sister parser to
+the current project is on CPAN as L<Data::Kanji::KanjiVG>. Users who
+do not specifically know what data to use are strongly recommended not
+to use the Tomoe data, which is currently unmaintained and contains a
+lot of errors.
+
+=head2 Scripts
+
+The L<git repository for this
+project|https://github.com/benkasminbullock/Data-Kanji-Tomoe> contains
+L<a
+script|https://github.com/benkasminbullock/Data-Kanji-Tomoe/blob/master/scripts/tomoe-to-sqlite.pl>
+and L<a
+schema|https://github.com/benkasminbullock/Data-Kanji-Tomoe/blob/master/scripts/tomoe.sql>
+for inserting the Tomoe files into a SQLite database as well as L<a
+script for extracting an individual character and drawing a PNG
+graphic of
+it|https://github.com/benkasminbullock/Data-Kanji-Tomoe/blob/master/scripts/draw-tomoe.pl>. These
+files are not included in the CPAN distribution of this module. These
+scripts are not supported as part of this distribution. Users will
+need to modify the scripts to make use of them.
+
+=head1 AUTHOR
+
+Ben Bullock, <bkb@cpan.org>
+
+=head1 COPYRIGHT & LICENCE
+
+This package and associated files are copyright (C) 2012 Ben Bullock.
+
+You can use, copy, modify and redistribute this package and associated
+files under the Perl Artistic Licence or the GNU General Public
+Licence.
+
+
