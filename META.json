@@ -31,7 +31,9 @@
          }
       },
       "runtime" : {
-         "requires" : {}
+         "requires" : {
+            "XML::Parser" : 0
+         }
       }
    },
    "release_status" : "stable",
@@ -43,5 +45,5 @@
          "url" : "https://github.com/benkasminbullock/Data-Kanji-Tomoe"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }

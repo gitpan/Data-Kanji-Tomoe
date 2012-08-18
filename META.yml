@@ -17,8 +17,9 @@ no_index:
   directory:
     - t
     - inc
-requires: {}
+requires:
+  XML::Parser: 0
 resources:
   bugtracker: https://github.com/benkasminbullock/Data-Kanji-Tomoe/issues
   repository: https://github.com/benkasminbullock/Data-Kanji-Tomoe
-version: 0.01
+version: 0.02

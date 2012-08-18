@@ -14,14 +14,14 @@ Data::Kanji::Tomoe - parse the data files of the Tomoe project
 
 =head1 DESCRIPTION
 
-This Perl module parses the kanji or hanzi data supplied by L<the Tomoe
-"handwriting recognition engine"|/Tomoe>.
+This Perl module parses the kanji or hanzi data files supplied with
+L<the Tomoe "handwriting recognition engine"|/Tomoe>.
 
 The data itself is not supplied with this module.
 
-The parsing is based on L<XML::Parser>, and simply breaks the Tomoe
-data into individual characters then calls back a routine supplied by
-the user with the data for each character.
+The parsing is based on L<XML::Parser>. It breaks the Tomoe data into
+individual characters, and calls a subroutine supplied by the user
+with the data for each character.
 
 =head1 METHODS
 
@@ -34,8 +34,8 @@ the user with the data for each character.
         character_callback => \& user_callback,
     );
 
-Start the object. A hash containing the name of the data file to be
-parsed, under the key C<tomoe_data_file>, must be supplied.
+Create the object. The argument is a hash. The name of the data file
+to be parsed, under the key C<tomoe_data_file>, must be supplied.
 
 =cut
 
@@ -74,8 +74,8 @@ reference. So, for example, if the original Tomoe data consists of
         </stroke>
         <stroke>
             <point x="5" y="6"/>
-        </strokes>
-    </stroke>
+        </stroke>
+    </strokes>
 
 then C<< $character->{strokes} >> contains something like
 
@@ -106,11 +106,11 @@ object itself:
 
 The Tomoe "handwriting recognition engine" is located at
 L<http://tomoe.sourceforge.jp>. The data files can be downloaded from
-this location. The most recent update of the software was on 17 May
-2006, and the project is dormant. Those who have queries about Tomoe
-might try L<the mailing list for the "Tegaki Handwriting Recognition
-Project"|https://groups.google.com/group/tegaki-hwr>. This is a similar
-project which some of the same people are involved in.
+this location. The most recent update of the software was on 29 June
+2007, and the project is currently dormant. For queries about Tomoe,
+try L<the mailing list for the "Tegaki Handwriting Recognition
+Project"|https://groups.google.com/group/tegaki-hwr>. This is a
+similar project which some of the same people are involved in.
 
 =head2 Other sources of kanji shape data
 
