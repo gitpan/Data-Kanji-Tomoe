@@ -1,8 +1,10 @@
+Changes
 lib/Data/Kanji/Tomoe.pm
 lib/Data/Kanji/Tomoe.pod
 Makefile.PL
 MANIFEST			This list of files
 MANIFEST.SKIP
+README
 t/Data-Kanji-Tomoe.t
 t/handwriting-zh_CN.xml
 META.yml                                 Module YAML meta-data (added by MakeMaker)
