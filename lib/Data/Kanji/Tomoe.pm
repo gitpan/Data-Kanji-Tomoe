@@ -1,6 +1,6 @@
 package Data::Kanji::Tomoe;
 
-our $VERSION = 0.03;
+our $VERSION = 0.04;
 
 # Read in the data file from Tomoe
 

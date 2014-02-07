@@ -1,5 +1,9 @@
 Revision history for perl module Data::Kanji::Tomoe
 
+0.04 2014-02-07
+
+* Add MIN_PERL_VERSION to Makefile.PL.
+
 0.03 2013-11-27
 
 * Add "Changes" to module.

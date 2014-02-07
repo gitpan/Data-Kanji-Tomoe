@@ -12,7 +12,7 @@
                                   
 
 
-This is the README for Data::Kanji::Tomoe version 0.03.
+This is the README for Data::Kanji::Tomoe version 0.04.
 
 Data::Kanji::Tomoe is a "module" for the Perl computer programming language, a
 library of computer code to install on a computer.  This document contains four
@@ -61,6 +61,8 @@ using
 
 3. INSTALLATION
 
+This module requires Perl version 5.8.1 or later.
+
 To install the module from CPAN, use
 
     cpan Data::Kanji::Tomoe
@@ -69,11 +71,11 @@ If you have the App::cpanminus installer, you may prefer
 
     cpanm Data::Kanji::Tomoe
 
-To install the module from the source file, Data-Kanji-Tomoe-0.03.tar.gz,
+To install the module from the source file, Data-Kanji-Tomoe-0.04.tar.gz,
 follow this sequence of commands:
 
-    tar xfz Data-Kanji-Tomoe-0.03.tar.gz
-    cd Data-Kanji-Tomoe-0.03
+    tar xfz Data-Kanji-Tomoe-0.04.tar.gz
+    cd Data-Kanji-Tomoe-0.04
     perl Makefile.PL
     make
     make install
@@ -98,6 +100,6 @@ repository on github at
 
 -----------------------------------------------------------------------------
 
-This README was written on Wed Nov 27 20:19:53 2013.
+This README was written on Fri Feb  7 10:17:34 2014.
 
 -----------------------------------------------------------------------------
